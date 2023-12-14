@@ -1,6 +1,7 @@
 VitalTracker SDK for Android
 ========================
-This library allows you to integrate VitalTracker into your Android app.
+This library allows you to integrate VitalTracker into your Android app.  
+
 Remote PPG를 이용한 심박수, 스트레스, 호흡수, 산소포화도 측정 라이브러리인 VitalTracker SDK를 안드로이드 앱에 탑재하여 개발하는 것을 돕기 위해 작성되었습니다
 
 TRY IT OUT
@@ -16,8 +17,7 @@ FEATURES
   |OS|Android 8.1 Oreo 이상 ( API Level 27이상 ), Compose UI|
   |카메라|전면카메라|
   |CPU|Arm64 (64bit)|
-  |촬영시 권장사항|주변이 너무 심하게 어둡지 않아야 함.
-  촬영 시 움직임 및 빛 변화가 없어야 함.|
+  |촬영시 권장사항|주변이 너무 심하게 어둡지 않아야 함. 촬영 시 움직임 및 빛 변화가 없어야 함.|
 
 
 STRUCTURE
