@@ -1,8 +1,10 @@
 VitalTracker SDK for Android
 ========================
 This library allows you to integrate VitalTracker into your Android app.  
-VitalTracker SDK를 안드로이드 앱에 탑재하여 생체지표를 추출할 수 있도록 지원합니다.
-Remote PPG 기술을 이용하여 5가지의 생체 지표인 심박수, 스트레스, 호흡수, 산소포화도, 혈압을 측정할 수 있습니다.
+VitalTracker SDK를 안드로이드 앱에 탑재하여 생체지표를 추출할 수 있도록 지원합니다.  
+Remote PPG 기술을 이용하여 5가지의 생체 지표인 심박수, 스트레스, 호흡수, 산소포화도, 혈압을 측정할 수 있습니다.  
+
+
 
 TRY IT OUT
 ----------
@@ -22,30 +24,12 @@ FEATURES
 
 STRUCTURE
 ---------
-The SDK is separated into modules with the following structure.
-측정 알고리즘 서버와의 구성에 대해 설명명
+Vital Tracker의 제품은 Mobile용 SDK와 생체지표를 분석하는 서버로 구성됩니다.   
+이 SDK는 Mobile SDK 중 Android OS의 서비스 앱에 탑재하기 위한 모듈입니다.
+생체지표 분석 서버는 별도의 구축이 필요하며 서비스앱에서 연동이 필요합니다.  
 
-    +----------------------------------------------------+
-    |                                                    |
-    | Facebook-android-sdk                               |
-    |                                                    |
-    +----------------------------------------------------+
-    +----------+ +----------+ +------------+ +-----------+
-    |          | |          | |            | |           |
-    | Facebook | | Facebook | | Facebook   | | Facebook  |
-    | -Login : | | -Share   | | -Messenger | | -Applinks |
-    |          | |          | |            | |           |
-    +----------+ +----------+ |            | |           |
-    +-----------------------+ |            | |           |
-    |                       | |            | |           |
-    | Facebook-Common       | |            | |           |
-    |                       | |            | |           |
-    +-----------------------+ +------------+ +-----------+
-    +----------------------------------------------------+
-    |                                                    |
-    | Facebook-Core                                      |
-    |                                                    |
-    +----------------------------------------------------+
+    ![sdk library settings](https://github.com/bioconnect/filestorage/blob/main/service_structure.png)
+  
 
 USAGE
 -----
