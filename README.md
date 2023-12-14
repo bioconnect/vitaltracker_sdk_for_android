@@ -65,12 +65,9 @@ include the appropriate dependency (or dependencies) listed below in your `app/b
 2. library 적용
 1)	app/libs 에 .aar 파일을 복사 & 붙여넣기합니다.
 2)	File - Project Structure 클릭
- 
-
 3)	사이드의 Dependencies를 누르고, 중간에 Declared Dependencies 바로 밑 + 버튼을 누른 후, JAR/AAR Dependency를 선택합니다.
- 
-
-4)	step1칸에 /libs/파일이름.aar 을 입력후, ok버튼을 누릅니다.
+4)	step1칸에 /libs/bioconnect_debugs.aar 을 입력후, ok버튼을 누릅니다.  
+![sdk library settings](https://github.com/bioconnect/filestorage/blob/main/external_lib_settings.png)
   
 5)	모듈:app단위 build.gradle파일의 dependencies에 implementation files('libs/파일이름.aar') 이 있는지 확인합니다. (없다면, 작성)
 
@@ -90,7 +87,7 @@ import com.example.bioconnect.utils.GET_LOG
 import com.example.bioconnect.utils.stressToLevel
 를 import해줍니다.
 
-9)	onCreate 안에 MeasureView() 및 측정 결과를 저장할 변수를 선언해줍니다.
+10)	onCreate 안에 MeasureView() 및 측정 결과를 저장할 변수를 선언해줍니다.
 MeasureView 파라미터: (다음 장 스크린샷 첨부)
 @ activity (ComponentActivity)
 @ baseUrl (String) = BaseUrl
