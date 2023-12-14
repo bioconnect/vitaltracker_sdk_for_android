@@ -157,7 +157,7 @@ dependencies {
   ![main_activity](https://github.com/bioconnect/filestorage/blob/main/main_activity.png)
 
    
-   2)	onCreate 안에 MeasureView() 및 측정 결과를 저장할 변수를 선언해줍니다.<br/>
+  2) onCreate 안에 MeasureView() 및 측정 결과를 저장할 변수를 선언해줍니다.<br/>
     
     ESTIMATE_TIME : 측정 시간(default = 15 초로 특별한 이슈가 없으면 변경하지 않습니다.)
     GET_LOG : 로그 확인
