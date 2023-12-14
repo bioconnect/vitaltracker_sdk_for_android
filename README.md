@@ -1,5 +1,3 @@
-가이드 - [바이오커넥트]상명대학교android가이드.docx
-
 카메라, 얼굴 detector, skin segmentation, 서버 통신 코드 & AAR 파일 생성 안드로이드 스튜디오 프로젝트 
 
 
