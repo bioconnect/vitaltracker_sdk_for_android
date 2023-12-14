@@ -19,6 +19,7 @@ FEATURES
   |촬영시 권장사항|주변이 너무 심하게 어둡지 않아야 함.
   촬영 시 움직임 및 빛 변화가 없어야 함.|
 
+
 STRUCTURE
 ---------
 The SDK is separated into modules with the following structure.
