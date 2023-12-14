@@ -155,7 +155,7 @@ dependencies {
    1)	사용하려는 Activity에서 아래 소스 코드를 참조하여 개발하도록 합니다.<br/>
    
    2) onCreate 안에 MeasureView() 및 측정 결과를 저장할 변수를 선언해 줍니다.<br/>
-    
+    ``` 
     ESTIMATE_TIME : 측정 시간(default = 15 초로 특별한 이슈가 없으면 변경하지 않습니다.)
     GET_LOG : 로그 확인
        
@@ -165,10 +165,10 @@ dependencies {
     @ baseUrl (String) = 측정지표 분석 서버의 Url 
     @ showResultTable (Boolean) = 측정 결과 및 에러를 View UI에 출력 여부
     @ result (HealthData) = 라이브러리 내에 선언된 측정 결과 데이터 클래스로 측정 결과를 받는 변수
-    
+    ```
 
    3) 측정완료 후 결과는 result를 리스너 이용하여 결과치를 활용할 수 있도록 제공합니다.<br/>
-     
+    ``` 
     ${result.value.second} 의 리턴 결과치 
       HealthData(bpm=83, rr=9, stress=436, spo2=95, bp=93/124)
 
@@ -179,7 +179,8 @@ dependencies {
     혈압: ${result.value.second!!.bp}
     스트레스(수치값): ${result.value.second!!.stress}
     스트레스(의미값): stressToLevel(${result.value.second!!.stress})
-   
+    ```   
+  
   ![main_activity](https://github.com/bioconnect/filestorage/blob/main/main_activity.png)
 
    <br/>
