@@ -48,105 +48,164 @@ The SDK is separated into modules with the following structure.
 
 USAGE
 -----
-Facebook SDKs are broken up into separate modules as shown above. To ensure the most optimized use of
-space only install the modules that you intend to use. To get started, see the Installation section below.
+* 동작 시나리오  
 
-Any Facebook SDK initialization must occur only in the main process of the app. Use of Facebook SDK in processes other than the main process is not supported and will likely cause problems.
+-	앱 동작 -> 카메라 권한 요청 -> 얼굴 감지 -> 측정 버튼 활성화 -> 측정 버튼 누름 및 측정 (15초) -> 생체지표 분석 서버와 통신 -> 측정 결과 출력
 
+* 동작 이미지
+  
 
 INSTALLATION
 ------------
 Facebook SDKs are published to Maven as independent modules. To utilize a feature listed above
 include the appropriate dependency (or dependencies) listed below in your `app/build.gradle` file.
+
+1. 빈 프로젝트 생성 ( minSdk = 27이상, targetSdk = 34 )
+
+2. library 적용
+1)	app/libs 에 .aar 파일을 복사 & 붙여넣기합니다.
+2)	File - Project Structure 클릭
+ 
+
+3)	사이드의 Dependencies를 누르고, 중간에 Declared Dependencies 바로 밑 + 버튼을 누른 후, JAR/AAR Dependency를 선택합니다.
+ 
+
+4)	step1칸에 /libs/파일이름.aar 을 입력후, ok버튼을 누릅니다.
+  
+5)	모듈:app단위 build.gradle파일의 dependencies에 implementation files('libs/파일이름.aar') 이 있는지 확인합니다. (없다면, 작성)
+
+6)	아래의 이미지를 참고하여 다른 라이브러리 dependencies와 다른 속성들을 추가합니다.
+ 
+ 
+
+7)	local.properies에 base_url = “https://서버url/” 을 추가합니다. (특수문자는 앞에 역슬래시를 입력해야합니다.)  
+
+
+8)	사용하려는 Activity에서 
+com.example.bioconnect.MeasureView 
+com.example.bioconnect.HealthData
++) option
+import com.example.bioconnect.utils.ESTIMATE_TIME
+import com.example.bioconnect.utils.GET_LOG
+import com.example.bioconnect.utils.stressToLevel
+를 import해줍니다.
+
+9)	onCreate 안에 MeasureView() 및 측정 결과를 저장할 변수를 선언해줍니다.
+MeasureView 파라미터: (다음 장 스크린샷 첨부)
+@ activity (ComponentActivity)
+@ baseUrl (String) = BaseUrl
+@ showResultTable (Boolean) = 측정 결과 및 에러 뷰 출력 여부
+@ resultOk (Boolean) = 측정 결과 상태 변수
+@ result (HealthData) = 라이브러리 내에 선언된 측정 결과 데이터 클래스로 측정 결과를 받는 변수
+
++) ESTIMATE_TIME : 측정 시간 변경(단위, 초 / Int / default = 15)
++) GET_LOG : 통신 로그 확인(logcat tag = Bioconnect, Boolean / default = false)
++) stressToLevel : 측정 결과로 나온 stressIndex를 범위로 반환
+/**
+ * stress index: 변경하고자 하는 값,
+ * 정상 < 200
+ * 200 <= 약한 스트레스 < 900
+ * 900 <= 강한 스트레스*/
+
+
 ```gradle
-dependencies {
-    // Facebook Core only (Analytics)
-    implementation 'com.facebook.android:facebook-core:latest.release'
-
-    // Facebook Login only
-    implementation 'com.facebook.android:facebook-login:latest.release'
-
-    // Facebook Share only
-    implementation 'com.facebook.android:facebook-share:latest.release'
-
-    // Facebook Messenger only
-    implementation 'com.facebook.android:facebook-messenger:latest.release'
-
-    // Facebook App Links only
-    implementation 'com.facebook.android:facebook-applinks:latest.release'
-    
-    // Facebook Marketing only
-    implementation 'com.facebook.android:facebook-marketing:latest.release'
-
-    // Facebook Android SDK (everything)
-    implementation 'com.facebook.android:facebook-android-sdk:latest.release'
+plugins {
+      id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
 }
-```
 
-You may also need to add the following to your project/build.gradle file.
-```gradle
-buildscript {
-    repositories {
-        mavenCentral()
+android {
+    namespace 'com.bioconnect.vitaltracker'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.bioconnect.vitaltracker"
+        minSdk 27
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables {
+            useSupportLibrary true
+        }
     }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        compose true
+        buildConfig true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion '1.3.2'
+    }
+    packagingOptions {
+        resources {
+            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+        }
+    }
+    ndkVersion '25.1.8937393'
+}
+
+dependencies {
+    implementation files('/libs/bioconnect-debug.aar')
+
+    implementation 'androidx.core:core-ktx:1.8.0'
+    implementation platform('org.jetbrains.kotlin:kotlin-bom:1.8.0')
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.1'
+    implementation 'androidx.activity:activity-compose:1.5.1'
+    implementation platform('androidx.compose:compose-bom:2022.10.00')
+    implementation 'androidx.compose.ui:ui'
+    implementation 'androidx.compose.ui:ui-graphics'
+    implementation 'androidx.compose.ui:ui-tooling-preview'
+    implementation 'androidx.compose.material3:material3:1.1.1'
+    implementation "androidx.compose.material:material-icons-extended"
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    androidTestImplementation platform('androidx.compose:compose-bom:2022.10.00')
+    androidTestImplementation 'androidx.compose.ui:ui-test-junit4'
+    debugImplementation 'androidx.compose.ui:ui-tooling'
+    debugImplementation 'androidx.compose.ui:ui-test-manifest'
+
+    // CameraX
+    implementation "androidx.camera:camera-lifecycle:1.3.0-alpha06"
+    implementation "androidx.camera:camera-video:1.3.0-alpha06"
+    implementation "androidx.camera:camera-view:1.3.0-alpha06"
+    implementation "androidx.camera:camera-extensions:1.3.0-alpha06"
+    implementation "androidx.camera:camera-core:1.3.0-alpha06"
+
+    // viewmodel
+    implementation "androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1"
+
+    // permission
+    implementation "com.google.accompanist:accompanist-permissions:0.24.9-beta"
+    // retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation("com.squareup.okhttp3:logging-interceptor:4.11.0")
 }
 ```
 
-GIVE FEEDBACK
--------------
-Please report bugs or issues to https://developers.facebook.com/bugs/
 
-You can also visit our [Facebook Developer Community Forum](https://developers.facebook.com/community/),
-join the [Facebook Developers Group on Facebook](https://www.facebook.com/groups/fbdevelopers/),
-ask questions on [Stack Overflow](http://facebook.stackoverflow.com),
-or open an issue in this repository.
-
-SECURITY
---------
-See the [SECURITY POLICY](SECURITY.md) for more info on our bug bounty program.
-
-CONTRIBUTING
--------------
-We are able to accept contributions to the Facebook SDK for Android. To contribute please do the following.
-- Follow the instructions in the [CONTRIBUTING.md](https://github.com/facebook/facebook-android-sdk/blob/main/CONTRIBUTING.md).
-- Submit your pull request to the [main](https://github.com/facebook/facebook-android-sdk/tree/main) branch. This allows us to merge your change into our internal main and then push out the change in the next release.
-
-LICENSE
--------
-Except as otherwise noted, the Facebook SDK for Android is licensed under the Facebook Platform License (https://github.com/facebook/facebook-android-sdk/blob/main/LICENSE.txt).
-
-Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the License for the specific language governing permissions and limitations under the License.
-
-DEVELOPER TERMS
----------------
-
-- By enabling Facebook integrations, including through this SDK, you can share information with Facebook, including information about people’s use of your app. Facebook will use information received in accordance with our Data Use Policy (https://www.facebook.com/about/privacy/), including to provide you with insights about the effectiveness of your ads and the use of your app.  These integrations also enable us and our partners to serve ads on and off Facebook.
-
-- You may limit your sharing of information with us by updating the Insights control in the developer tool (https://developers.facebook.com/apps/[app_id]/settings/advanced).
-
-- If you use a Facebook integration, including to share information with us, you agree and confirm that you have provided appropriate and sufficiently prominent notice to and obtained the appropriate consent from your users regarding such collection, use, and disclosure (including, at a minimum, through your privacy policy). You further agree that you will not share information with us about children under the age of 13.
-
-- You agree to comply with all applicable laws and regulations and also agree to our Terms (https://www.facebook.com/policies/), including our Platform Policies (https://developers.facebook.com/policy/) and Advertising Guidelines, as applicable (https://www.facebook.com/ad_guidelines.php).
-
-By using the Facebook SDK for Android you agree to these terms.
-
-
-
-
-
-
-
-가이드 - [바이오커넥트]상명대학교android가이드.docx
-
-카메라, 얼굴 detector, skin segmentation, 서버 통신 코드 & AAR 파일 생성 안드로이드 스튜디오 프로젝트 
-
-
-* https가 아닌 서버접속을 위해 프로젝트별 res/xml/network_security_config.xml 파일의 
+* https가 아닌 서버접속을 위해 프로젝트별 res/xml/network_security_config.xml 파일의 설정
+```XML
 <network-security-config>
     <base-config cleartextTrafficPermitted="true" />
 </network-security-config>
-로 설정 
+```
 
-* local.properties 
-base_url="http://118.128.153.171:8088"  //사내 파일서버 경로
 
