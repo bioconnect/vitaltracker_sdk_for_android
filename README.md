@@ -6,11 +6,6 @@ Remote PPG 기술을 이용하여 5가지의 생체 지표인 심박수, 스트�
 
 
 
-TRY IT OUT
-----------
-1. Check-out the tutorials available online at https://developers.facebook.com/docs/android/getting-started
-2. Start coding! Visit https://developers.facebook.com/docs/android/ for tutorials and reference documentation.
-
 FEATURES
 --------
 * 원활한 동작을 위해 아래의 환경을 지원해야 합니다.
@@ -22,13 +17,15 @@ FEATURES
   |촬영시 권장사항|주변이 너무 심하게 어둡지 않아야 함. 촬영 시 움직임 및 빛 변화가 없어야 함.|
 
 
+
 STRUCTURE
 ---------
 Vital Tracker의 제품은 Mobile용 SDK와 생체지표를 분석하는 서버로 구성됩니다.   
 이 SDK는 Mobile SDK 중 Android OS의 서비스 앱에 탑재하기 위한 모듈입니다.
 생체지표 분석 서버는 별도의 구축이 필요하며 서비스앱에서 연동이 필요합니다.  
 
-    ![sdk library settings](https://github.com/bioconnect/filestorage/blob/main/service_structure.png)
+  ![sdk library settings](https://github.com/bioconnect/filestorage/blob/main/service_structure.png)
+
   
 
 USAGE
@@ -157,7 +154,7 @@ dependencies {
 4. Activity에 적용
   1)	사용하려는 Activity에서 아래 이미지를 참조하여 개발하도록 합니다.
      
-     ![main_activity](https://github.com/bioconnect/filestorage/blob/main/main_activity.png)
+  ![main_activity](https://github.com/bioconnect/filestorage/blob/main/main_activity.png)
 
   2)	onCreate 안에 MeasureView() 및 측정 결과를 저장할 변수를 선언해줍니다.
 
