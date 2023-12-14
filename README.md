@@ -152,12 +152,9 @@ dependencies {
 <br/>
 
 4. Activity에 적용<br/>
-   1)	사용하려는 Activity에서 아래 이미지를 참조하여 개발하도록 합니다.<br/>
-     
-  ![main_activity](https://github.com/bioconnect/filestorage/blob/main/main_activity.png)
-
+   1)	사용하려는 Activity에서 아래 소스 코드를 참조하여 개발하도록 합니다.<br/>
    
-  2) onCreate 안에 MeasureView() 및 측정 결과를 저장할 변수를 선언해줍니다.<br/>
+   2) onCreate 안에 MeasureView() 및 측정 결과를 저장할 변수를 선언해 줍니다.<br/>
     
     ESTIMATE_TIME : 측정 시간(default = 15 초로 특별한 이슈가 없으면 변경하지 않습니다.)
     GET_LOG : 로그 확인
@@ -182,8 +179,12 @@ dependencies {
     혈압: ${result.value.second!!.bp}
     스트레스(수치값): ${result.value.second!!.stress}
     스트레스(의미값): stressToLevel(${result.value.second!!.stress})
-    
-<br/>
+   
+  ![main_activity](https://github.com/bioconnect/filestorage/blob/main/main_activity.png)
+
+   <br/>
+
+
 
 5. 기타 설정
  * https가 아닌 서버접속을 위해 프로젝트별 res/xml/network_security_config.xml 파일의 설정<br/>
