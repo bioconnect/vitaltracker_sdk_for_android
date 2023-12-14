@@ -41,21 +41,23 @@ INSTALLATION
 ------------
 VitalTracker SDK를 안드로이드 앱에 적용/설치 하기 위한 과정을 설명합니다.   
 
-1. 빈 프로젝트 생성 ( minSdk = 27이상, targetSdk = 34 )
+1. 빈 프로젝트 생성
+   - minSdk = 27이상
+   - targetSdk = 34 
 
 2. library 적용
-  1)	app/libs 에 VitalTracker SDK 라이브러리인 bioconnect_debug.aar 파일을 붙여넣기합니다.
-  2)	Android Studio IDE 기준으로 설명합니다. 메뉴의 File - Project Structure 클릭합니다.
-  3)	사이드의 Dependencies를 누르고, 중간에 Declared Dependencies 바로 밑 + 버튼을 누른 후, JAR/AAR Dependency를 선택합니다.
-  4)	step1칸에 /libs/bioconnect_debug.aar 을 입력후, ok버튼을 누릅니다.    
+   1)	app/libs 에 VitalTracker SDK 라이브러리인 bioconnect_debug.aar 파일을 붙여넣기합니다.
+   2)	Android Studio IDE 기준으로 설명합니다. 메뉴의 File - Project Structure 클릭합니다.
+   3)	사이드의 Dependencies를 누르고, 중간에 Declared Dependencies 바로 밑 + 버튼을 누른 후, JAR/AAR Dependency를 선택합니다.
+   4)	step1칸에 /libs/bioconnect_debug.aar 을 입력후, ok버튼을 누릅니다.    
     ![sdk library settings](https://github.com/bioconnect/filestorage/blob/main/external_lib_settings.png)
   
-  5)	모듈:app단위 build.gradle파일의 dependencies에 implementation files('libs/bioconnect_debug.aar') 이 있는지 확인합니다.
+   5)	모듈:app단위 build.gradle파일의 dependencies에 implementation files('libs/bioconnect_debug.aar') 이 있는지 확인합니다.
      
 
 3. 빌드 및 배포
-  1) 빌드 및 배포 도구인 gradle을 기준으로 설명합니다.
-  2) 아래 build.gradle 의 설정을 참조하여 dependencies를 추가하도록 합니다.
+   1) 빌드 및 배포 도구인 gradle을 기준으로 설명합니다.
+   2) 아래 build.gradle 의 설정을 참조하여 dependencies를 추가하도록 합니다.
    
 ```gradle
 plugins {
@@ -149,14 +151,12 @@ dependencies {
 }
 ```
 
-
-
 4. Activity에 적용
-  1)	사용하려는 Activity에서 아래 이미지를 참조하여 개발하도록 합니다.
+   1)	사용하려는 Activity에서 아래 이미지를 참조하여 개발하도록 합니다.
      
   ![main_activity](https://github.com/bioconnect/filestorage/blob/main/main_activity.png)
 
-  2)	onCreate 안에 MeasureView() 및 측정 결과를 저장할 변수를 선언해줍니다.
+   2)	onCreate 안에 MeasureView() 및 측정 결과를 저장할 변수를 선언해줍니다.
 
     ```
     ESTIMATE_TIME : 측정 시간(default = 15 초로 특별한 이슈가 없으면 변경하지 않습니다.)
@@ -171,7 +171,7 @@ dependencies {
     @ result (HealthData) = 라이브러리 내에 선언된 측정 결과 데이터 클래스로 측정 결과를 받는 변수
     ```
 
-  3) 측정완료 후 결과는 result를 리스너 이용하여 결과치를 활용할 수 있도록 제공합니다.
+   3) 측정완료 후 결과는 result를 리스너 이용하여 결과치를 활용할 수 있도록 제공합니다.
         
     ``` 
     ${result.value.second} 의 리턴 결과치 
@@ -185,8 +185,6 @@ dependencies {
     스트레스(수치값): ${result.value.second!!.stress}
     스트레스(의미값): stressToLevel(${result.value.second!!.stress})
     ```
-
-
 
 * https가 아닌 서버접속을 위해 프로젝트별 res/xml/network_security_config.xml 파일의 설정
 ```XML
