@@ -171,7 +171,7 @@ dependencies {
     ``` 
     ${result.value.second} 의 리턴 결과치 
       HealthData(bpm=83, rr=9, stress=436, spo2=95, bp=93/124)
-
+  
 
     심박수: ${result.value.second!!.bpm}
     호흡수: ${result.value.second!!.rr}

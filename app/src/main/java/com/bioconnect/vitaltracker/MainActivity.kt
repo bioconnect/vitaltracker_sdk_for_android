@@ -39,13 +39,12 @@ class MainActivity : ComponentActivity() {
 
                 // 측정 결과 리스너
                 LaunchedEffect(key1 = result.collectAsState().value){
-
                     val resultOk = result.value.first
                     Log.e("Test>>", "resultOk: ${resultOk}")
 
                     if (resultOk){
                         Log.e("Test>>", "result: ${result.value.second}")
-
+                        Log.e("Test>>", "bpm reulst: ${result.value.second!!.bpm}")
                         // stress index to stress level
                         Log.e("Test>>", stressToLevel(result.value.second!!.stress))
                     }
@@ -53,9 +52,8 @@ class MainActivity : ComponentActivity() {
 
                 MeasureView(
                     activity = this@MainActivity,
-                    baseUrl = "http://118.128.153.171:8088",
+                    baseUrl = "http://118.128.153.171:8088", //측정지표 분석 서버 URL
                     showResultTable = true,
-//                    resultOk = resultOk,
                     result = result
                 )
             }
