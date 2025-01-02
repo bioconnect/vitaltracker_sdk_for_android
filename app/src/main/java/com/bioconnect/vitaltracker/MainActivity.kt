@@ -52,7 +52,8 @@ class MainActivity : ComponentActivity() {
 
                 MeasureView(
                     activity = this@MainActivity,
-                    baseUrl = "http://118.128.153.171:8088", //측정지표 분석 서버 URL
+                    encryptedKey = "valid_key",
+                    baseUrl = "URL", //측정지표 분석 서버 URL
                     showResultTable = true,
                     result = result
                 )
