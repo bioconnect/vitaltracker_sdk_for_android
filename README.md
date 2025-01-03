@@ -45,13 +45,13 @@ VitalTracker SDK를 안드로이드 앱에 적용/설치 하기 위한 과정을
 <br/>
 
 2. library 적용<br/>
-   1)	app/libs 에 VitalTracker SDK 라이브러리인 bioconnect_debug.aar 파일을 붙여넣기합니다.<br/>
+   1)	app/libs 에 VitalTracker SDK 라이브러리인 bioconnect_release.aar 파일을 붙여넣기합니다.<br/>
    2)	Android Studio IDE 기준으로 설명합니다. 메뉴의 File - Project Structure 클릭합니다.<br/>
    3)	사이드의 Dependencies를 누르고, 중간에 Declared Dependencies 바로 밑 + 버튼을 누른 후, JAR/AAR Dependency를 선택합니다.<br/>
-   4)	step1칸에 /libs/bioconnect_debug.aar 을 입력후, ok버튼을 누릅니다.<br/>
+   4)	step1칸에 /libs/bioconnect_release.aar 을 입력후, ok버튼을 누릅니다.<br/>
     ![sdk library settings](https://github.com/bioconnect/filestorage/blob/main/external_lib_settings.png)
   
-   5)	모듈:app단위 build.gradle파일의 dependencies에 implementation files('libs/bioconnect_debug.aar') 이 있는지 확인합니다.<br/>
+   5)	모듈:app단위 build.gradle파일의 dependencies에 implementation files('libs/bioconnect_release.aar') 이 있는지 확인합니다.<br/>
 <br/>
 
 3. 빌드 및 배포<br/>
@@ -111,7 +111,7 @@ android {
 }
 
 dependencies {
-    implementation files('/libs/bioconnect-debug.aar')
+    implementation files('/libs/bioconnect_release.aar')
 
     implementation 'androidx.core:core-ktx:1.8.0'
     implementation platform('org.jetbrains.kotlin:kotlin-bom:1.8.0')
