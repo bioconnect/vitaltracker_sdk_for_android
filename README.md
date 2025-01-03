@@ -162,7 +162,8 @@ dependencies {
      
     MeasureView 파라미터: 
     @ activity (ComponentActivity)
-    @ baseUrl (String) = 측정지표 분석 서버의 Url 
+    @ encryptedKey (String) = 사용 인증키(문의 요망) 
+    @ baseUrl (String) = 측정지표 분석 서버의 Url(문의 요망) 
     @ showResultTable (Boolean) = 측정 결과 및 에러를 View UI에 출력 여부
     @ result (HealthData) = 라이브러리 내에 선언된 측정 결과 데이터 클래스로 측정 결과를 받는 변수
     ```
