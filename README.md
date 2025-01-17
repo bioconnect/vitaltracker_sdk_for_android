@@ -11,7 +11,7 @@ FEATURES
 * 원활한 동작을 위해 아래의 환경을 지원해야 합니다.<br/>
   |항목|세부내용|
   |------|---|
-  |OS|Android 8.1 Oreo 이상 ( API Level 27이상 ), Compose UI|
+  |OS|Android 7.0 Nougat 이상 ( API Level 24이상 ), Compose UI|
   |카메라|전면카메라|
   |CPU|Arm64 (64bit)|
   |촬영시 권장사항|주변이 너무 심하게 어둡지 않아야 함. 촬영 시 움직임 및 빛 변화가 없어야 함.|
@@ -40,7 +40,7 @@ INSTALLATION
 VitalTracker SDK를 안드로이드 앱에 적용/설치 하기 위한 과정을 설명합니다.<br/>
 
 1. 빈 프로젝트 생성<br/>
-   - minSdk = 27이상
+   - minSdk = 24이상
    - targetSdk = 34 
 <br/>
 
@@ -70,7 +70,7 @@ android {
 
     defaultConfig {
         applicationId "com.bioconnect.vitaltracker"
-        minSdk 27
+        minSdk 24
         targetSdk 34
         versionCode 1
         versionName "1.0"
